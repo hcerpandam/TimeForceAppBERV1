@@ -29,7 +29,7 @@ public class UsuarioController {
      * @return un nuevo usuario que hemos creado
      */
     @PostMapping
-    Usuario createUsusario(@RequestBody Usuario newUsuario) {
+    Usuario createUsuario(@RequestBody Usuario newUsuario) {
         return usuarioRepository.save(newUsuario);
     }
 
@@ -74,7 +74,7 @@ public class UsuarioController {
      */
    @PutMapping("/{id}")
     Usuario updateUsuario(@RequestBody Usuario newUsuario, @PathVariable Long id) {
-        return usuarioRepository.findById(id)
+        return usuarioRepository.findByIdUsuario(id)
                 .map(usuario -> {
                     usuario.setApellidos(newUsuario.getApellidos());
                     usuario.setBalance(newUsuario.getBalance());
@@ -110,7 +110,7 @@ public class UsuarioController {
      */
     @DeleteMapping("/{id}")
     void deleteUsuario(@PathVariable Long id) {
-        usuarioRepository.deleteById(id);
+        usuarioRepository.deleteByIdUsuario(id);
     }
 
 

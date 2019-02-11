@@ -56,16 +56,16 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
      * @param nif: Atributo unique
      * @param claveAcceso: El pass para acceder
      * Que no haya sido baneado
-     * @return
+     * @return Usuario no baneado que tenga ese nif y clave de acceso
      */
-    //Optional<Boolean> findByNifAndClaveAccesoAndBaneadoFalse(String nif, String claveAcceso);
+    Optional<Usuario> findByNifAndClaveAccesoAndBaneadoFalse(String nif, String claveAcceso);
 
-    //Boolean existsUsuarioByNifAndClaveAccesoAndBaneadoIsFalse(String nif, String claveAcceso);
-
-
+    Boolean existsUsuarioByNifAndClaveAccesoAndBaneadoIsFalse(String nif, String claveAcceso);
 
 
-
-
-
+    /**
+     * Elimina el usuario
+     * @param idUsuario: Clave primaria Usuario
+     */
+    void deleteByIdUsuario(Long idUsuario);
 }
