@@ -1,4 +1,4 @@
-package org.timeforcetech.timeforceappbe;
+package org.timeforcetech.timeforceappberv1;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

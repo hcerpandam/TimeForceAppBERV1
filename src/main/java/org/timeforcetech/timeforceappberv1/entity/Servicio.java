@@ -1,4 +1,4 @@
-package org.timeforcetech.timeforceappbe.entity;
+package org.timeforcetech.timeforceappberv1.entity;
 
 import org.hibernate.annotations.ColumnDefault;
 
@@ -50,12 +50,8 @@ public class Servicio implements Serializable {
     @ColumnDefault("false")
     private boolean cancelado;
 
+    //GETTERS/SETTERS
 
-    //CONSTRUCTOR SIN ARGUMENTOS
-    public Servicio(){}
-
-
-    //GETTERS Y SETTERS
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

@@ -1,4 +1,4 @@
-package org.timeforcetech.timeforceappbe.config;
+package org.timeforcetech.timeforceappberv1.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

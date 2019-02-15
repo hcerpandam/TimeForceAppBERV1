@@ -1,10 +1,10 @@
-# TimeForceAppBE
+# TimeForceAppBERV1
 
 ## Description
 
 This is the **back-end** of an open source project for an online time banking.
 
-Is being developed with Spring (Spring boot toll), JPA, Hibernate and MySQL.
+Is being developed with Spring (Spring boot tool), JPA, Hibernate and MySQL.
 
 The release date of the whole product will be on **february the 18th**
 

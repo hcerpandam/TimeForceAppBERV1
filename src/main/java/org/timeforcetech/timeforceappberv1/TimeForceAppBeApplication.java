@@ -1,4 +1,4 @@
-package org.timeforcetech.timeforceappbe;
+package org.timeforcetech.timeforceappberv1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

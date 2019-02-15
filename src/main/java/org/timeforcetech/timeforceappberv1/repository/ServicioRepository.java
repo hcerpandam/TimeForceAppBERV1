@@ -1,8 +1,8 @@
-package org.timeforcetech.timeforceappbe.repository;
+package org.timeforcetech.timeforceappberv1.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.timeforcetech.timeforceappbe.entity.Servicio;
+import org.timeforcetech.timeforceappberv1.entity.Servicio;
 
 import java.util.List;
 import java.util.Optional;

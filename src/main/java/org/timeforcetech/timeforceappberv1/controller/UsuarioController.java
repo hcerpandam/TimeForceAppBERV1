@@ -1,34 +1,33 @@
-package org.timeforcetech.timeforceappbe.controller;
+package org.timeforcetech.timeforceappberv1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.timeforcetech.timeforceappbe.entity.Usuario;
-import org.timeforcetech.timeforceappbe.repository.UsuarioRepository;
+import org.timeforcetech.timeforceappberv1.entity.Usuario;
+import org.timeforcetech.timeforceappberv1.repository.UsuarioRepository;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api")
 public class UsuarioController {
 
     @Autowired  //Inyección de dependencias: Spring instancia automaticamente controllers, services y dao y los pone donde esté la anotacion @autowired
     private final UsuarioRepository usuarioRepository;
 
     /**
-     * Invoca al Repository
      * Constructor
      * @param usuarioRepository: Atributo de tipo UsuarioRepository
      */
     public UsuarioController(UsuarioRepository usuarioRepository) { this.usuarioRepository = usuarioRepository; }
 
     /**
-     * CREATE
+     * CREATE: Registro de usuarios
      * @param newUsuario: Objeto de tipo Usuario
      * @return un nuevo usuario que hemos creado
      */
-    @PostMapping
+    @PostMapping("/registro")
     Usuario createUsuario(@RequestBody Usuario newUsuario) {
         return usuarioRepository.save(newUsuario);
     }
@@ -39,7 +38,7 @@ public class UsuarioController {
      * Spring devuelve todos los objetos como un JSON
      * @return listado con todos los usuarios
      */
-    @GetMapping
+    @GetMapping("/usuarios")
     List<Usuario> readAll() {
         return usuarioRepository.findAll();
     }
@@ -49,7 +48,7 @@ public class UsuarioController {
      * @param id: Clave primaria de Usuario
      * @return el usuario cuya Id se pasa por parámetro o un mensaje de excepción si no existe
      */
-    @GetMapping("/{id}")
+    @GetMapping("/usuarios/{id}")
     Usuario readOneId(@PathVariable Long id) {
         return usuarioRepository.findByIdUsuario(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El usuario con id %s no existe", id)));
@@ -76,27 +75,26 @@ public class UsuarioController {
     Usuario updateUsuario(@RequestBody Usuario newUsuario, @PathVariable Long id) {
         return usuarioRepository.findByIdUsuario(id)
                 .map(usuario -> {
-                    usuario.setApellidos(newUsuario.getApellidos());
-                    usuario.setBalance(newUsuario.getBalance());
-                    usuario.setBaneado(newUsuario.isBaneado());
-                    usuario.setClaveAcceso(newUsuario.getClaveAcceso());
-                    usuario.setCodPostal(newUsuario.getCodPostal());
-                    usuario.setDiasSuspension(newUsuario.getDiasSuspension());
-                    usuario.setEsAdministrador(newUsuario.isEsAdministrador());
-                    usuario.setEscalera(newUsuario.getEscalera());
-                    usuario.setEsSuperAdministrador(newUsuario.isEsSuperAdministrador());
-                    usuario.setFechaNacimiento(newUsuario.getFechaNacimiento());
-                    usuario.setLocalidad(newUsuario.getLocalidad());
-                    usuario.setMail(newUsuario.getMail());
                     usuario.setNif(newUsuario.getNif());
-                    usuario.setNumeroPortal(newUsuario.getNumeroPortal());
-                    usuario.setNombreUsuario(newUsuario.getNombreUsuario());
-                    usuario.setNombreVia(newUsuario.getNombreVia());
-                    usuario.setProvincia(newUsuario.getProvincia());
-                    usuario.setPuerta(newUsuario.getPuerta());
-                    usuario.setSuspendido(newUsuario.isSuspendido());
+                    usuario.setClaveAcceso(newUsuario.getClaveAcceso());
+                    usuario.setNombre(newUsuario.getNombre());
+                    usuario.setApellidos(newUsuario.getApellidos());
+                    usuario.setFechaNacimiento(newUsuario.getFechaNacimiento());
+                    usuario.setRol(newUsuario.getRol());
                     usuario.setTipoVia(newUsuario.getTipoVia());
+                    usuario.setNombreVia(newUsuario.getNombreVia());
+                    usuario.setNumeroPortal(newUsuario.getNumeroPortal());
+                    usuario.setEscalera(newUsuario.getEscalera());
+                    usuario.setPuerta(newUsuario.getPuerta());
+                    usuario.setLocalidad(newUsuario.getLocalidad());
+                    usuario.setProvincia(newUsuario.getProvincia());
+                    usuario.setCodPostal(newUsuario.getCodPostal());
                     usuario.setTelefono(newUsuario.getTelefono());
+                    usuario.setMail(newUsuario.getMail());
+                    usuario.setBalance(newUsuario.getBalance());
+                    usuario.setSuspendido(newUsuario.isSuspendido());
+                    usuario.setDiasSuspension(newUsuario.getDiasSuspension());
+                    usuario.setBaneado(newUsuario.isBaneado());
                     usuario.setApellidos(newUsuario.getApellidos());
                     return usuarioRepository.save(usuario);
                 })

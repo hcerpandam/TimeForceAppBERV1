@@ -1,8 +1,8 @@
-package org.timeforcetech.timeforceappbe.repository;
+package org.timeforcetech.timeforceappberv1.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.timeforcetech.timeforceappbe.entity.Usuario;
+import org.timeforcetech.timeforceappberv1.entity.Usuario;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,24 +15,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
      * @return todos los usuarios
      */
     List<Usuario> findAll();
-
-    /**
-     * READ
-     * @return todos los usuarios que no sean administradores ni superadministradores
-     */
-    List<Usuario> findAllByEsAdministradorFalseAndEsSuperAdministradorFalse();
-
-    /**
-     * READ
-     * @return solo los administradores
-     */
-    List<Usuario> findAllByEsAdministradorTrue();
-
-    /**
-     * READ
-     * @return solo los superAdministradores
-     */
-    List<Usuario> findAllByEsSuperAdministradorTrue();
 
     /**
      * READ
@@ -58,9 +40,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
      * Que no haya sido baneado
      * @return Usuario no baneado que tenga ese nif y clave de acceso
      */
-    Optional<Usuario> findByNifAndClaveAccesoAndBaneadoFalse(String nif, String claveAcceso);
+    //Optional<Usuario> findByNifAndClaveAccesoAndBaneadoFalse(String nif, String claveAcceso);
 
-    Boolean existsUsuarioByNifAndClaveAccesoAndBaneadoIsFalse(String nif, String claveAcceso);
+    //Boolean existsUsuarioByNifAndClaveAccesoAndBaneadoIsFalse(String nif, String claveAcceso);
 
 
     /**

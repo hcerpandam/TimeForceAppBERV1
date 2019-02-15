@@ -1,4 +1,4 @@
-package org.timeforcetech.timeforceappbe.entity;
+package org.timeforcetech.timeforceappberv1.entity;
 
 import org.hibernate.annotations.ColumnDefault;
 
@@ -20,11 +20,18 @@ public class Usuario implements Serializable {
     @Column(unique = true, length = 50, nullable = false)
     private String nif;
 
+    /**
+     * N usuarios pueden tener el mismo rol
+     */
+    @ManyToOne
+    @JoinColumn(name = "rol_id",columnDefinition = "int default 1")
+    private Rol rol;
+
     @Column(name = "clave_acc",nullable = false)
     private String claveAcceso;
 
     @Column(name = "nombre_usu",nullable = false)
-    private String nombreUsuario;
+    private String nombre;
 
     @Column(nullable = false)
     private String apellidos;
@@ -54,14 +61,13 @@ public class Usuario implements Serializable {
     @Column(name = "codigo_pos",nullable = false)
     private int codPostal;
 
-    @Column(nullable = false)
+    @Column(unique = true, length = 50, nullable = false)
     private int telefono;
 
-    @Column(nullable = false)
+    @Column(unique = true, length = 50, nullable = false)
     private String mail;
 
-    @Column(nullable = false)
-    @ColumnDefault("2")
+    @Column(nullable = false, columnDefinition = "int default 2")
     private int balance;
 
     @Column(nullable = false)
@@ -75,21 +81,7 @@ public class Usuario implements Serializable {
     @ColumnDefault("false")
     private boolean baneado;
 
-    @Column(name = "es_admin",nullable = false)
-    @ColumnDefault("false")
-    private boolean esAdministrador;
-
-    @Column(name="es_supadmin",nullable = false)
-    @ColumnDefault("false")
-    private boolean esSuperAdministrador;
-
-
-    //CONSTRUCTOR SIN ARGUMENTOS
-
-    public Usuario(){}
-
-
-    //GETTERS Y SETTERS
+    //GETTERS/SETTERS
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -111,6 +103,14 @@ public class Usuario implements Serializable {
         this.nif = nif;
     }
 
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
     public String getClaveAcceso() {
         return claveAcceso;
     }
@@ -119,12 +119,12 @@ public class Usuario implements Serializable {
         this.claveAcceso = claveAcceso;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellidos() {
@@ -253,21 +253,5 @@ public class Usuario implements Serializable {
 
     public void setBaneado(boolean baneado) {
         this.baneado = baneado;
-    }
-
-    public boolean isEsAdministrador() {
-        return esAdministrador;
-    }
-
-    public void setEsAdministrador(boolean esAdministrador) {
-        this.esAdministrador = esAdministrador;
-    }
-
-    public boolean isEsSuperAdministrador() {
-        return esSuperAdministrador;
-    }
-
-    public void setEsSuperAdministrador(boolean esSuperAdministrador) {
-        this.esSuperAdministrador = esSuperAdministrador;
     }
 }

@@ -1,9 +1,9 @@
-package org.timeforcetech.timeforceappbe.internal.utils;
+package org.timeforcetech.timeforceappberv1.internal.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.timeforcetech.timeforceappbe.entity.Usuario;
+import org.timeforcetech.timeforceappberv1.entity.Usuario;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 

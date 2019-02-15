@@ -1,11 +1,11 @@
-package org.timeforcetech.timeforceappbe.controller;
+package org.timeforcetech.timeforceappberv1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.timeforcetech.timeforceappbe.entity.Servicio;
-import org.timeforcetech.timeforceappbe.repository.ServicioRepository;
+import org.timeforcetech.timeforceappberv1.entity.Servicio;
+import org.timeforcetech.timeforceappberv1.repository.ServicioRepository;
 
 import java.util.List;
 
@@ -66,16 +66,16 @@ public class ServicioController {
     Servicio updateServicio(@RequestBody Servicio newServicio, @PathVariable Long id) {
         return servicioRepository.findById(id)
                 .map(servicio -> {
-                    servicio.setCancelado(newServicio.isCancelado());
                     servicio.setCategoria(newServicio.getCategoria());
                     servicio.setDescServicio(newServicio.getDescServicio());
                     servicio.setFechaHora(newServicio.getFechaHora());
+                    servicio.setOfertante(newServicio.getOfertante());
+                    servicio.setConsumidor(newServicio.getConsumidor());
                     servicio.setLocalizacionAcordada(newServicio.getLocalizacionAcordada());
+                    servicio.setValoracion(newServicio.getValoracion());
                     servicio.setMensaje(newServicio.getMensaje());
                     servicio.setPrecio(newServicio.getPrecio());
-                    servicio.setValoracion(newServicio.getValoracion());
-                    servicio.setConsumidor(newServicio.getConsumidor());
-                    servicio.setOfertante(newServicio.getOfertante());
+                    servicio.setCancelado(newServicio.isCancelado());
                     return servicioRepository.save(servicio);
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El servicio con id %s no existe", id)));
