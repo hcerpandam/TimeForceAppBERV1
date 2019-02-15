@@ -63,15 +63,11 @@ public class UsuarioController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El usuario con id %s no existe", id)));
     }
 
-    /**
-     * READ
-     * @param nif: Atributo unique de usuario. Distinto que el anterior
-     * @return el usuario cuyo Nif se pasa por parámetro o un mensaje de excepción si no existe
-     */
-    @GetMapping(value ="/usuarios", params = "nif")
-    Usuario readOneNif(@RequestParam String nif) {
-        return usuarioRepository.findByNif(nif)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El usuario con nif %s no existe", nif)));
+
+    @GetMapping(value ="/login")
+    Usuario findByNifAndClaveAccesoAndBaneadoFalseAndSuspendidoFalse(@RequestBody Usuario usuario) {
+        return usuarioRepository.findByNifAndClaveAccesoAndBaneadoFalseAndSuspendidoFalse(usuario.getNif(),usuario.getClaveAcceso())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ("El usuario no existe")));
     }
 
     /**
