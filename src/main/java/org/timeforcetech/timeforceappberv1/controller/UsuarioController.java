@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.timeforcetech.timeforceappberv1.entity.Rol;
 import org.timeforcetech.timeforceappberv1.entity.Usuario;
 import org.timeforcetech.timeforceappberv1.repository.UsuarioRepository;
 
@@ -27,8 +28,16 @@ public class UsuarioController {
      * @param newUsuario: Objeto de tipo Usuario
      * @return un nuevo usuario que hemos creado
      */
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/registro")
     Usuario createUsuario(@RequestBody Usuario newUsuario) {
+        if(newUsuario.getRol() == null){
+            Rol rol = new Rol();
+            rol.setIdRol(1);
+            newUsuario.setRol(rol);
+        }if(newUsuario.getBalance()==0){
+            newUsuario.setBalance(2);
+        }
         return usuarioRepository.save(newUsuario);
     }
 
@@ -59,7 +68,7 @@ public class UsuarioController {
      * @param nif: Atributo unique de usuario. Distinto que el anterior
      * @return el usuario cuyo Nif se pasa por parámetro o un mensaje de excepción si no existe
      */
-    @GetMapping(params = "nif")
+    @GetMapping(value ="/usuarios", params = "nif")
     Usuario readOneNif(@RequestParam String nif) {
         return usuarioRepository.findByNif(nif)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El usuario con nif %s no existe", nif)));

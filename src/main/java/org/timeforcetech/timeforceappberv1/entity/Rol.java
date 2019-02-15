@@ -11,8 +11,7 @@ public class Rol implements Serializable {
     //ATRIBUTOS DE LA CLASE/COLUMNAS DE LA TABLA
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRol;
+    private int idRol;
 
     @Column(name = "nombre_rol",unique = true, length = 50, nullable = false)
     private String nombreRol;
@@ -24,11 +23,11 @@ public class Rol implements Serializable {
         return serialVersionUID;
     }
 
-    public Long getIdRol() {
+    public int getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(Long idRol) {
+    public void setIdRol(int idRol) {
         this.idRol = idRol;
     }
 
