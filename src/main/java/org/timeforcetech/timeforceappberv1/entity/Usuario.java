@@ -18,7 +18,7 @@ public class Usuario implements Serializable {
     private Long idUsuario;
 
     @Column(unique = true, length = 50, nullable = false)
-    private String nif;
+    private String username;
 
     /**
      * N usuarios pueden tener el mismo rol
@@ -27,8 +27,8 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "rol_id",columnDefinition = "int default 1")
     private Rol rol;
 
-    @Column(name = "clave_acc",nullable = false)
-    private String claveAcceso;
+    @Column(nullable = false)
+    private String password;
 
     @Column(name = "nombre_usu",nullable = false)
     private String nombre;
@@ -95,12 +95,12 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public String getNif() {
-        return nif;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNif(String nif) {
-        this.nif = nif;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Rol getRol() {
@@ -111,12 +111,12 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
-    public String getClaveAcceso() {
-        return claveAcceso;
+    public String getPassword() {
+        return password;
     }
 
-    public void setClaveAcceso(String claveAcceso) {
-        this.claveAcceso = claveAcceso;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombre() {

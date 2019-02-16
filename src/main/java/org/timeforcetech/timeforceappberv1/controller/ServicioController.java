@@ -10,7 +10,8 @@ import org.timeforcetech.timeforceappberv1.repository.ServicioRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/myservices")
+@CrossOrigin(origins = { "http://localhost:4200","*" })
+@RequestMapping("/api/servicios")
 public class ServicioController {
 
     @Autowired //Inyección de dependencias: Spring instancia automaticamente controllers, services y dao y los pone donde esté la anotacion @autowired

@@ -19,30 +19,18 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     /**
      * READ
      * Optional evita los null.pointer
-     * @param id: Clave primaria Usuario
+     * @param idUsuario: Clave primaria Usuario
      * @return el Usuario con esa Id
      */
-    Optional<Usuario> findByIdUsuario(Long id);
+    Optional<Usuario> findByIdUsuario(Long idUsuario);
 
     /**
      * READ
      * Optional evita los null.pointer
-     * @param nif: Atributo unique
+     * @param username: Atributo unique
      * @return el Usuario con ese nif
      */
-    Optional<Usuario> findByNif(String nif);
-
-    /**
-     * READ
-     * LOGIN
-     * Optional evita los null.pointer
-     * @param nif: Atributo unique
-     * @param claveAcceso: El pass para acceder
-     * Que no haya sido baneado
-     * Que no esté suspendido
-     * @return Usuario no baneado ni suepndido que tenga ese nif y clave de acceso
-     */
-    Optional<Usuario> findByNifAndClaveAccesoAndBaneadoFalseAndSuspendidoFalse(String nif, String claveAcceso);
+    Optional<Usuario> findByUsername(String username);
 
     /**
      * Elimina el usuario
