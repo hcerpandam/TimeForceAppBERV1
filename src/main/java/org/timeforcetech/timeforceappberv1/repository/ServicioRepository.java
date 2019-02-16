@@ -1,6 +1,8 @@
 package org.timeforcetech.timeforceappberv1.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.timeforcetech.timeforceappberv1.entity.Servicio;
 
@@ -23,5 +25,10 @@ public interface ServicioRepository extends JpaRepository<Servicio, Long> {
      * @return el Usuario con esa Id
      */
     Optional<Servicio> findByIdServicio(Long id);
+
+    @Query(nativeQuery = true, value="SELECT id_servicio, categoria, fecha_hora, consumidor_id, valoracion, localizacion_acor, cancelado FROM servicio WHERE ofertante_id=:ofertante")
+    List<Servicio> findMiConsultaEspecifica(@Param("ofertante") Long idUsuario);
+
+
 
 }

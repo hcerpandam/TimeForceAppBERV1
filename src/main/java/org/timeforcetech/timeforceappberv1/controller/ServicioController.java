@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.timeforcetech.timeforceappberv1.entity.Servicio;
+import org.timeforcetech.timeforceappberv1.entity.Usuario;
 import org.timeforcetech.timeforceappberv1.repository.ServicioRepository;
 
 import java.util.List;
@@ -41,10 +42,13 @@ public class ServicioController {
      * Spring devuelve todos los objetos como un JSON
      * @return listado con todos los servicios
      */
-    @GetMapping
+    /*@GetMapping
     List<Servicio> readAll() {
         return servicioRepository.findAll();
-    }
+    }*/
+
+    @GetMapping
+    List<Servicio> findMiConsultaEspecifica(@PathVariable Usuario ofertante){ return servicioRepository.findMiConsultaEspecifica(ofertante.getIdUsuario());}
 
     /**
      * READ
