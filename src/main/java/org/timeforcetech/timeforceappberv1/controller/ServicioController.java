@@ -32,10 +32,12 @@ public class ServicioController {
      * @param newServicio: Objeto de tipo Usuario
      * @return Un nuevo servicio que hemos creado
      */
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     Servicio createServicio(@RequestBody Servicio newServicio) {
         return servicioRepository.save(newServicio);
     }
+
 
     /**
      * READ
@@ -69,7 +71,7 @@ public class ServicioController {
      */
     @PutMapping("/{id}")
     Servicio updateServicio(@RequestBody Servicio newServicio, @PathVariable Long id) {
-        return servicioRepository.findById(id)
+        return servicioRepository.findByIdServicio(id)
                 .map(servicio -> {
                     servicio.setCategoria(newServicio.getCategoria());
                     servicio.setDescServicio(newServicio.getDescServicio());
@@ -85,6 +87,32 @@ public class ServicioController {
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El servicio con id %s no existe", id)));
     }
+
+    /**
+     * UPDATE
+     */
+    //@PutMapping("/{id}")
+    @PutMapping
+    Servicio cancelServicio(@RequestBody Servicio newServicio, @PathVariable Long id){
+        return servicioRepository.findByIdServicio(id)
+                .map(servicio -> {
+                    servicio.setCategoria(newServicio.getCategoria());
+                    servicio.setDescServicio(newServicio.getDescServicio());
+                    servicio.setFechaHora(newServicio.getFechaHora());
+                    servicio.setOfertante(newServicio.getOfertante());
+                    servicio.setConsumidor(newServicio.getConsumidor());
+                    servicio.setLocalizacionAcordada(newServicio.getLocalizacionAcordada());
+                    servicio.setValoracion(newServicio.getValoracion());
+                    servicio.setMensaje(newServicio.getMensaje());
+                    servicio.setPrecio(newServicio.getPrecio());
+                    servicio.setCancelado(true);
+                    return servicioRepository.save(servicio);
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El servicio con id %s no existe", id)));
+    }
+
+
+
 
     /**
      * DELETE

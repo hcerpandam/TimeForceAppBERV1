@@ -11,7 +11,6 @@ import org.timeforcetech.timeforceappberv1.repository.UsuarioRepository;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Base64;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = { "http://localhost:4200","*" })
@@ -51,7 +50,7 @@ public class UsuarioController {
      * @param id: Clave primaria de Usuario
      * @return el usuario cuya Id se pasa por parámetro o un mensaje de excepción si no existe
      */
-    @GetMapping("/usuarios/{id}")
+    @GetMapping("/perfil/{id}")
     Usuario findByIdUsuario(@PathVariable Long id) {
         return usuarioRepository.findByIdUsuario(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El usuario con id %s no existe", id)));
