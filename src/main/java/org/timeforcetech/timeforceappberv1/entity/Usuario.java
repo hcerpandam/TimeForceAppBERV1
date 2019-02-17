@@ -72,13 +72,6 @@ public class Usuario implements Serializable {
 
     @Column(nullable = false)
     @ColumnDefault("false")
-    private boolean suspendido;
-
-    @Column(name = "dias_sus")
-    private int diasSuspension;
-
-    @Column(nullable = false)
-    @ColumnDefault("false")
     private boolean baneado;
 
     //GETTERS/SETTERS
@@ -229,22 +222,6 @@ public class Usuario implements Serializable {
 
     public void setBalance(int balance) {
         this.balance = balance;
-    }
-
-    public boolean isSuspendido() {
-        return suspendido;
-    }
-
-    public void setSuspendido(boolean suspendido) {
-        this.suspendido = suspendido;
-    }
-
-    public int getDiasSuspension() {
-        return diasSuspension;
-    }
-
-    public void setDiasSuspension(int diasSuspension) {
-        this.diasSuspension = diasSuspension;
     }
 
     public boolean isBaneado() {

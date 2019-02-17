@@ -84,8 +84,6 @@ public class UsuarioController {
                     usuario.setTelefono(newUsuario.getTelefono());
                     usuario.setMail(newUsuario.getMail());
                     usuario.setBalance(newUsuario.getBalance());
-                    usuario.setSuspendido(newUsuario.isSuspendido());
-                    usuario.setDiasSuspension(newUsuario.getDiasSuspension());
                     usuario.setBaneado(newUsuario.isBaneado());
                     usuario.setApellidos(newUsuario.getApellidos());
                     return usuarioRepository.save(usuario);
