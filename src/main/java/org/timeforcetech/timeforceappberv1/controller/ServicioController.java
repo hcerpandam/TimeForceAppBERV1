@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.timeforcetech.timeforceappberv1.entity.Servicio;
-import org.timeforcetech.timeforceappberv1.entity.Usuario;
 import org.timeforcetech.timeforceappberv1.repository.ServicioRepository;
 
 import java.util.List;
@@ -35,6 +34,9 @@ public class ServicioController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     Servicio createServicio(@RequestBody Servicio newServicio) {
+        if(newServicio.getLocalizacionAcordada()==null){
+            newServicio.setLocalizacionAcordada("3");
+        }
         return servicioRepository.save(newServicio);
     }
 
@@ -49,8 +51,16 @@ public class ServicioController {
         return servicioRepository.findAll();
     }*/
 
-    @GetMapping
-    List<Servicio> findMiConsultaEspecifica(@PathVariable Usuario ofertante){ return servicioRepository.findMiConsultaEspecifica(ofertante.getIdUsuario());}
+    @GetMapping("/ofertante/{id}")
+    List<Servicio> findMiConsultaEspecifica(@PathVariable Long id){ return servicioRepository.findByOfertanteIdUsuario(id);}
+
+    @GetMapping("/consumidor/{id}")
+    List<Servicio> findMiConsultaEspecifica2(@PathVariable Long id){ return servicioRepository.findByConsumidorIdUsuario(id);}
+
+    @GetMapping("/buscadorservicios/{palabra}")
+    List<Servicio> findMiconsultaEspecifica3(@PathVariable String palabra){return servicioRepository.findMiconsultaEspecifica3(palabra);}
+
+
 
     /**
      * READ
@@ -62,6 +72,7 @@ public class ServicioController {
         return servicioRepository.findByIdServicio(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El servicio con id %s no existe", id)));
     }
+
 
     /**
      * UPDATE
@@ -91,27 +102,13 @@ public class ServicioController {
     /**
      * UPDATE
      */
-    //@PutMapping("/{id}")
-    @PutMapping
-    Servicio cancelServicio(@RequestBody Servicio newServicio, @PathVariable Long id){
-        return servicioRepository.findByIdServicio(id)
-                .map(servicio -> {
-                    servicio.setCategoria(newServicio.getCategoria());
-                    servicio.setDescServicio(newServicio.getDescServicio());
-                    servicio.setFechaHora(newServicio.getFechaHora());
-                    servicio.setOfertante(newServicio.getOfertante());
-                    servicio.setConsumidor(newServicio.getConsumidor());
-                    servicio.setLocalizacionAcordada(newServicio.getLocalizacionAcordada());
-                    servicio.setValoracion(newServicio.getValoracion());
-                    servicio.setMensaje(newServicio.getMensaje());
-                    servicio.setPrecio(newServicio.getPrecio());
-                    servicio.setCancelado(true);
-                    return servicioRepository.save(servicio);
-                })
+    @PostMapping("/cancelar/{id}")
+    Servicio cancelServicio(@PathVariable Long id){
+        Servicio servicio=servicioRepository.findByIdServicio(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("El servicio con id %s no existe", id)));
+        servicio.setCancelado(true);
+        return servicioRepository.save(servicio);
     }
-
-
 
 
     /**

@@ -36,9 +36,9 @@ public class Servicio implements Serializable {
 
     @Column(name = "localizacion_acor",nullable = false)
     @ColumnDefault("3")
-    private int localizacionAcordada;
+    private String localizacionAcordada;
 
-    private Integer valoracion;
+    private String valoracion;
 
     private String mensaje;
 
@@ -51,7 +51,6 @@ public class Servicio implements Serializable {
     private boolean cancelado;
 
     //GETTERS/SETTERS
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -105,19 +104,19 @@ public class Servicio implements Serializable {
         this.consumidor = consumidor;
     }
 
-    public int getLocalizacionAcordada() {
+    public String getLocalizacionAcordada() {
         return localizacionAcordada;
     }
 
-    public void setLocalizacionAcordada(int localizacionAcordada) {
+    public void setLocalizacionAcordada(String localizacionAcordada) {
         this.localizacionAcordada = localizacionAcordada;
     }
 
-    public Integer getValoracion() {
+    public String getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(Integer valoracion) {
+    public void setValoracion(String valoracion) {
         this.valoracion = valoracion;
     }
 

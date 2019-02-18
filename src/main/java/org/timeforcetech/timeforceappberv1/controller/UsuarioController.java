@@ -8,10 +8,6 @@ import org.timeforcetech.timeforceappberv1.entity.Rol;
 import org.timeforcetech.timeforceappberv1.entity.Usuario;
 import org.timeforcetech.timeforceappberv1.repository.UsuarioRepository;
 
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
-import java.util.Base64;
-
 @RestController
 @CrossOrigin(origins = { "http://localhost:4200","*" })
 @RequestMapping("/api")
@@ -63,7 +59,7 @@ public class UsuarioController {
      * @param id: Clave primaria del usuario
      * @return El usuario modificado si encuentra un usuario con dicha clave primaria o un mensaje de excepción
      */
-   @PutMapping("/perfil/{id}")
+    @PutMapping("/perfil/{id}")
     Usuario updateUsuario(@RequestBody Usuario newUsuario, @PathVariable Long id) {
         return usuarioRepository.findByIdUsuario(id)
                 .map(usuario -> {
@@ -101,15 +97,5 @@ public class UsuarioController {
         usuarioRepository.deleteByIdUsuario(id);
     }
 
-    ///////LOGIN////////
-    @RequestMapping("/login")
-    public boolean login(@RequestBody Usuario usuariolog) {
-        return usuariolog.getUsername().equals("user") && usuariolog.getPassword().equals("password");
-    }
 
-    @RequestMapping("/usuariolog")
-    public Principal usuariolog(HttpServletRequest request) {
-        String authToken = request.getHeader("Authorization").substring("Basic".length()).trim();
-        return () -> new String(Base64.getDecoder().decode(authToken)).split(":")[0];
-    }
 }

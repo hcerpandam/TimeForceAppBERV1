@@ -9,6 +9,8 @@ import org.timeforcetech.timeforceappberv1.entity.Servicio;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hibernate.loader.Loader.SELECT;
+
 @Repository
 public interface ServicioRepository extends JpaRepository<Servicio, Long> {
 
@@ -26,8 +28,15 @@ public interface ServicioRepository extends JpaRepository<Servicio, Long> {
      */
     Optional<Servicio> findByIdServicio(Long id);
 
-    @Query(nativeQuery = true, value="SELECT id_servicio, categoria, fecha_hora, consumidor_id, valoracion, localizacion_acor, cancelado FROM servicio WHERE ofertante_id=:ofertante")
-    List<Servicio> findMiConsultaEspecifica(@Param("ofertante") Long idUsuario);
+    List<Servicio> findByOfertanteIdUsuario(Long idUsuario);
+
+    List<Servicio> findByConsumidorIdUsuario(Long idUsuario);
+
+    //@Query(nativeQuery = true, value="SELECT ofertante_id, fecha_hora, categoria, descripcion_ser, precio  FROM SERVICIO, USUARIO u WHERE fecha_hora>CURRENT_TIMESTAMP  AND consumidor_id IS NULL AND u.provincia LIKE 'Sevilla' AND (categoria LIKE '%guitarra%' OR descripcion_ser LIKE '%guitarra%')")
+    //List<Servicio> findMiconsultaEspecifica3 (@Param("nombre") String nombre, @Param("id") Long id);
+
+    @Query(nativeQuery = true, value="SELECT ofertante_id, fecha_hora, categoria, descripcion_ser, precio  FROM SERVICIO WHERE categoria=:palabra OR descripcion_ser=:palabra")
+    List<Servicio> findMiconsultaEspecifica3 (@Param("palabra") String palabra);
 
 
 
