@@ -6,12 +6,14 @@ This is the **back-end** of an open source project for an online time banking.
 
 Is being developed with Spring (Spring boot tool), JPA, Hibernate and MySQL.
 
-The release date of the whole product will be on **february the 18th**
+The release date of the whole product was on **february the 18th**
 
-Since then an until june, new versions will be released. In case you want to contribute, pull-out requests will be appreciated.
+Saddenly this project has been abandoned, so some of the queries performed may be wrong and the related front-end is unfinished: https://github.com/hcerpandam/TimeForceAppFERV1
 
-Final release will be on **june the 30th**. After that it's all yours.
+**Spring security** should work properly now.
+
+Feel free to clone and continue this project.
 
 ## Languages
 
-Comments in the project and documentation will be made in spanish. I'll publish that too.
+Comments in the project and documentation where made in spanish.
